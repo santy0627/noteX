@@ -1,0 +1,37 @@
+.application{
+  width: 100vw;
+  height: 100vh;
+}
+
+.tareas{
+  height: calc(100vh - 100px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+}
+
+.pendientes,
+.completadas {
+  height: 95%;
+  width: 40%;
+  display: flex;
+  padding: 20px 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.tareas__status{
+  width: 100%;
+  height: max-content;
+}
+
+.pendientes .tareas__status {
+  color: var(--red-color);
+  border-bottom: 3px solid var(--red-color);
+}
+
+.completadas .tareas__status {
+  color: var(--green-color);
+  border-bottom: 3px solid var(--green-color);
+}

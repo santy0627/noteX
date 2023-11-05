@@ -1,0 +1,38 @@
+.header {
+  width: 100vw;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+}
+
+.header__text{
+  height: max-content;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background-color: var(--bg-color-secundary);
+  padding: 10px 40px;
+  border-radius: 30px;
+}
+
+.tittle{
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 30px;
+  color: black;
+}
+
+.welcome{
+  font-size: 20px;
+}
+
+.mode{
+  height: max-content;
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-color-secundary);
+  padding: 10px 40px;
+  border-radius: 30px;
+}
