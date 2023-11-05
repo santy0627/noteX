@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Poppins:wght@400;700&family=Roboto:wght@400;700;900&display=swap');
+
+:root{
+    --bg-color: whitesmoke;
+    --bg-color-secundary: #e9e9e9;
+    --color-text: #272838;
+    --color-black: #272838;
+    --border-color: #272838;
+    --color-white: whitesmoke;
+    --green-color: #7CC0A8;
+    --red-color: #c07c7c;
+    --blue-color:#7F96FF;
+}
+
+*{
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background-color: var(--bg-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.btn{
+  margin-bottom: 10px;
+  padding: 10px;
+  padding-inline: 30px;
+  border-radius: 50px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  background:transparent;
+  outline: 2px solid var(--color-black);
+  color: var(--color-black);
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  transition: all .3s ease 0s;
+}
+
+.btn:hover{
+  transform: scale(1.1);
+  background-color: var(--green-color);
+}
