@@ -2,8 +2,9 @@ import { createBrowserRouter } from 'react-router-dom'
 import Landing from '../pages/Landing/Landing'
 import Registro from '../pages/Registro/Registro'
 import Nav from '../pages/Nav/Nav'
-import Login from '../pages/Login/login'
+import Login from '../pages/Login/Login.jsx'
 import Application from '../pages/Application/Application'
+import ProtectedRoute from './ProtectedRoute'
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +31,6 @@ export const router = createBrowserRouter([
   },
   {
     path: '/app',
-    Component: Application
+    element: <ProtectedRoute><Application /></ProtectedRoute>
   }
 ])

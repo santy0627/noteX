@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import './Login.css'
 
@@ -19,7 +18,8 @@ export default function Login () {
     }).then((response) => {
       if (response.ok) return response.json()
       throw new Error('Error al autenticar el usuario')
-    }).then(() => {
+    }).then((data) => {
+      globalThis.localStorage.setItem('USER', JSON.stringify(data.user))
       navigate('/app')
     }).catch(error => {
       console.log('Error en navegacion' + error)
