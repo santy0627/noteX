@@ -5,6 +5,7 @@ import Nav from '../pages/Nav/Nav'
 import Login from '../pages/Login/Login.jsx'
 import Application from '../pages/Application/Application'
 import ProtectedRoute from './ProtectedRoute'
+import ErrorPage from '../pages/ErrorPage/ErrorPage.jsx'
 
 export const router = createBrowserRouter([
   {
@@ -27,7 +28,8 @@ export const router = createBrowserRouter([
         path: 'ingreso',
         Component: Login
       }
-    ]
+    ],
+    ErrorBoundary: ErrorPage
   },
   {
     path: '/app',

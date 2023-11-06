@@ -1,10 +1,14 @@
 import React from 'react'
+import Error from '../../components/Error/Error'
+import { useRouteError } from 'react-router-dom'
+import './ErrorPage.css'
 
 export default function ErrorPage () {
+  const { statusText, message } = useRouteError()
+
   return (
-    <div className='error-page'>
-      <h1>Oops, algo ha pasado!</h1>
-      <p>error</p>
-    </div>
+    <main className='error-page'>
+      <Error errorText={message} statusError={statusText} />
+    </main>
   )
 }

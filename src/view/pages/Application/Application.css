@@ -1,6 +1,7 @@
 .application{
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: calc(100vh - 100px);
+  background-color: var(--bg-color);
 }
 
 .tareas{
@@ -24,6 +25,7 @@
 .tareas__status{
   width: 100%;
   height: max-content;
+  font-size: 50px;
 }
 
 .pendientes .tareas__status {

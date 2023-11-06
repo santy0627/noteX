@@ -3,7 +3,7 @@
 :root{
     --bg-color: whitesmoke;
     --bg-color-secundary: white;
-    --color-text: #272838;
+    --color-text: black;
     --color-black: #272838;
     --border-color: #272838;
     --color-white: whitesmoke;
@@ -12,6 +12,12 @@
     --blue-color:#7F96FF;
     --white: white;
     --black: black;
+}
+
+[theme = 'dark']{
+  --bg-color: black;
+  --bg-color-secundary:rgb(32, 32, 32);
+  --color-text: white;
 }
 
 *{

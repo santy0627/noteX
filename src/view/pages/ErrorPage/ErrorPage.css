@@ -1,0 +1,11 @@
+.error-page{
+  width: 100vw;
+  height: 100vb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url(../../../assets/404image.png);
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}

@@ -2,10 +2,19 @@
   width: 100%;
   height: min-content;
   padding: 20px;
-  border-radius: 30px;
+  border-radius: 0px 30px 30px 0px;
   background-color: var(--bg-color-secundary);
   margin-top: 20px;
+  color: var(--color-text);
 }
+
+/*.task{
+  border-left: 20px solid var(--red-color);
+}
+
+.task{
+  border-left: 20px solid var(--green-color);
+}*/
 
 .task__title{
   font-size: 40px;

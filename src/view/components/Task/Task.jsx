@@ -6,7 +6,7 @@ export default function Task ({ title, description, finishDate }) {
     <div className='task'>
       <h1 className='task__title'>{title}</h1>
       <p className='task__description'>{description}</p>
-      <p className='task__date'>{finishDate}</p>
+      <p className='task__date'>La tarea tiene fin el: {finishDate}</p>
     </div>
   )
 }
