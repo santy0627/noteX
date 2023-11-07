@@ -1,7 +1,8 @@
 .application{
   width: 100%;
-  height: calc(100vh - 100px);
+  height: 100vh;
   background-color: var(--bg-color);
+  position: relative;
 }
 
 .tareas{
