@@ -26,12 +26,13 @@
   align-items: center;
   justify-content: center;
   gap: 50px;
+  width: 100%;
 }
 
 .pendientes,
 .completadas {
   height: 95%;
-  width: 40%;
+  width: 38%;
   display: flex;
   padding: 20px 40px;
   display: flex;
@@ -57,7 +58,7 @@
 .img-div{
   position: absolute;
   left: 30px;
-  bottom: 30px;
+  bottom: calc(100vh - 50%);
   background-color: var(--bg-color-secundary);
   padding: 20px;
   border-radius: 30px;
@@ -68,7 +69,8 @@
   flex-direction: row;
   cursor: pointer;
   gap: 20px;
-  transition: all .3s ease;
+  transition: transform .3s ease;
+  color: var(--color-text);
 }
 
 .img-plus{

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Header from '../../components/Header/Header'
 import './Application.css'
 import Task from '../../components/Task/Task'
+import NewNote from '../../components/NewNote/NewNote'
 
 export default function Application () {
   const [mode, setMode] = useState(false)
@@ -10,6 +11,13 @@ export default function Application () {
 
   const toggleMode = () => {
     setMode(!mode)
+  }
+
+  const [isOpen, setIsOpen] = useState(false)
+
+  const toggleOpen = () => {
+    setIsOpen(!isOpen)
+    console.log(isOpen)
   }
 
   return (
@@ -26,10 +34,11 @@ export default function Application () {
             <h1 className='tareas__status'>Tareas completadas</h1>
           </div>
         </main>
-        <div className='img-div'>
+        <div className='img-div' onClick={toggleOpen}>
           <img className='img-plus' src={`/src/assets/plus-${mode ? 'black' : 'white'}.svg`} alt='plus' width='25px' />
         </div>
       </div>
+      {isOpen && <NewNote toggleOpen={toggleOpen} />}
     </>
   )
 }
