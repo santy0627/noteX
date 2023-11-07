@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import Header from '../../components/Header/Header'
 import './Application.css'
 import Task from '../../components/Task/Task'
-import Aside from '../../components/Aside/Aside'
 
 export default function Application () {
   const [mode, setMode] = useState(false)
@@ -17,6 +16,7 @@ export default function Application () {
     <>
       <div className='application' theme={theme}>
         <Header toggleMode={toggleMode} theme={theme} mode={mode} />
+        <input className='search' type='text' name='search' id='search' placeholder='Busca una nota...' />
         <main className='tareas'>
           <div className='pendientes'>
             <h1 className='tareas__status'>Tareas pendientes</h1>
@@ -26,7 +26,9 @@ export default function Application () {
             <h1 className='tareas__status'>Tareas completadas</h1>
           </div>
         </main>
-        <Aside mode={mode} />
+        <div className='img-div'>
+          <img className='img-plus' src={`/src/assets/plus-${mode ? 'black' : 'white'}.svg`} alt='plus' width='25px' />
+        </div>
       </div>
     </>
   )

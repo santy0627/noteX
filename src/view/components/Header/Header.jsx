@@ -8,7 +8,10 @@ export default function Header ({ toggleMode, theme, mode }) {
     <header className='header' theme={theme}>
       <div className='header__text'>
         <Link to='/inicio' className='tittle'>noteX</Link>
-        <p className='welcome'>Bienvenid@, <span className='user-name'>{user.firstName}</span></p>
+        <p className='welcome'>Bienvenid@, <span className='user-name'>{user.firstName}</span>
+          <img className='img-user' src={`/src/assets/user-${mode ? 'black' : 'white'}.svg`} alt='plus' width='25px' />
+        </p>
+
       </div>
       <div className='mode'>
         <img className='sun' src={`/src/assets/svg${mode ? 'Moon' : 'Sun'}.svg`} alt='' width='35px' onClick={toggleMode} />
