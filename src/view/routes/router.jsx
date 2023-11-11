@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { createHashRouter } from 'react-router-dom'
 import Landing from '../pages/Landing/Landing'
 import Registro from '../pages/Registro/Registro'
 import Nav from '../pages/Nav/Nav'
@@ -7,7 +7,7 @@ import Application from '../pages/Application/Application'
 import ProtectedRoute from './ProtectedRoute'
 import ErrorPage from '../pages/ErrorPage/ErrorPage.jsx'
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
   {
     path: '/',
     Component: Nav,
