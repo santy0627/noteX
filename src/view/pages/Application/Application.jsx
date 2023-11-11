@@ -64,7 +64,7 @@ export default function Application () {
           </div>
         </main>
         <div className='img-div' onClick={toggleOpen}>
-          <img className='img-plus' src={`../../../assets/plus-${mode ? 'black' : 'white'}.svg`} alt='plus' width='25px' />
+          <img className='img-plus' src={`../../../assets/svg/plus-${mode ? 'black' : 'white'}.svg`} alt='plus' width='25px' />
         </div>
       </div>
       {isOpen && <NewNote toggleOpen={toggleOpen} handleCreate={handleCreate} />}
