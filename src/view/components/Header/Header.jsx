@@ -1,3 +1,7 @@
+import { Moon } from '../Logos/Moon'
+import { Sun } from '../Logos/Sun'
+import { UserBlack } from '../Logos/user/UserBlack'
+import { UserWhite } from '../Logos/user/UserWhite'
 import './Header.css'
 import { Link } from 'react-router-dom'
 
@@ -13,12 +17,12 @@ export default function Header ({ toggleMode, theme, mode }) {
       <div className='header__text'>
         <Link to='/inicio' className='tittle' onClick={deleteUser}>noteX</Link>
         <p className='welcome'>Bienvenid@, <span className='user-name'>{user.firstName}</span>
-          <img className='img-user' src={`../../../assets/svg/user-${mode ? 'black' : 'white'}.svg`} alt='plus' width='25px' />
+          {mode ? <UserBlack width='25px' height='25px' /> : <UserWhite width='25px' height='25px' />}
         </p>
 
       </div>
-      <div className='mode'>
-        <img className='sun' src={`../../../assets/svg/svg${mode ? 'Moon' : 'Sun'}.svg`} alt='' width='35px' onClick={toggleMode} />
+      <div className='mode' onClick={toggleMode}>
+        {mode ? <Moon width='35px' /> : <Sun width='35px' />}
       </div>
     </header>
   )

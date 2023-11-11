@@ -3,6 +3,8 @@ import Header from '../../components/Header/Header'
 import './Application.css'
 import Task from '../../components/Task/Task'
 import NewNote from '../../components/NewNote/NewNote'
+import { PlusWhite } from '../../components/Logos/plus/PlusWhite'
+import { PlusBlack } from '../../components/Logos/plus/PlusBlack'
 
 export default function Application () {
   const [mode, setMode] = useState(false)
@@ -64,7 +66,7 @@ export default function Application () {
           </div>
         </main>
         <div className='img-div' onClick={toggleOpen}>
-          <img className='img-plus' src={`../../../assets/svg/plus-${mode ? 'black' : 'white'}.svg`} alt='plus' width='25px' />
+          {mode ? <PlusBlack width='25px' height='25px' /> : <PlusWhite width='25px' height='25px' />}
         </div>
       </div>
       {isOpen && <NewNote toggleOpen={toggleOpen} handleCreate={handleCreate} />}

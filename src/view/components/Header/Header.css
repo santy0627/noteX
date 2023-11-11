@@ -56,9 +56,5 @@
   padding: 10px 40px;
   border-radius: 30px;
   gap: 20px;
-}
-
-.sun,
-.moon{
   cursor: pointer;
 }
