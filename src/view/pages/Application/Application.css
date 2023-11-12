@@ -31,10 +31,10 @@
 
 .pendientes,
 .completadas {
-  height: 95%;
+  height: 800px;
   width: 38%;
   display: flex;
-  padding: 20px 40px;
+  padding: 20px 40px 0px 40px; 
   display: flex;
   flex-direction: column;
 }
@@ -43,6 +43,25 @@
   width: 100%;
   height: max-content;
   font-size: 50px;
+}
+
+.tareas__content {
+  max-height: 85%;
+  overflow: auto;
+  margin-top: 20px;
+  padding-right: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.tareas__content::-webkit-scrollbar {
+  width: 5px;
+}
+
+.tareas__content::-webkit-scrollbar-thumb {
+  background-color: var(--bg-color-secundary);
+  border-radius: 30px;
 }
 
 .pendientes .tareas__status {

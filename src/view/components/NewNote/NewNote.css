@@ -19,7 +19,7 @@
   align-items: center;
   flex-direction: column;
   width: 40%;
-  color: var(--text-color);
+  color: var(--color-text);
   height: 70%;
 }
 
@@ -48,6 +48,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  color: var(--color-text);
 }
 
 .form-modal__name,
@@ -58,8 +59,8 @@
   border-radius: 30px;
   border: none;
   font-size: 20px;
+  color: var(--color-text);
   background-color: var(--bg-color-secundary);
-  color: var(--text-color);
 }
 
 .form-modal__description{
@@ -89,6 +90,11 @@
 
 .boton.submit{
   background-color: var(--green-color);
+}
+
+.boton.cancel{
+  color: var(--color-text);
+  background-color: var(--bg-color-secundary);
 }
 
 .boton.cancel:hover{

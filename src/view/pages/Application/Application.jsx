@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../../components/Header/Header'
 import './Application.css'
 import Task from '../../components/Task/Task'
@@ -21,6 +21,18 @@ export default function Application () {
     setIsOpen(!isOpen)
     console.log(isOpen)
   }
+
+  useEffect(() => {
+    fetch('https://birsbane-numbat-zjcf.1.us-1.fl0.io/api/todo?userId=' + userID)
+      .then(response => {
+        if (response.ok) return response.json()
+        throw new Error('Error al recoger las notas')
+      }).then((data) => {
+        globalThis.localStorage.setItem('TODOS', JSON.stringify(data.todos))
+      })
+  }, [])
+
+  const todos = JSON.parse(globalThis.localStorage.getItem('TODOS'))
 
   const user = JSON.parse(globalThis.localStorage.getItem('USER'))
 
@@ -45,8 +57,6 @@ export default function Application () {
     }).then(response => {
       if (response.ok) return response.json()
       throw new Error('Error al crear la nota')
-    }).then((data) => {
-      console.log(data.todo)
     })
     event.target.reset()
   }
@@ -59,17 +69,22 @@ export default function Application () {
         <main className='tareas'>
           <div className='pendientes'>
             <h1 className='tareas__status'>Tareas pendientes</h1>
-            <Task title='hola' description='nada' finishDate='11/04/23' />
+            <div className='tareas__content'>
+              {todos.map(todo =>
+                <Task key={todo._id} title={todo.name} description={todo.description} finishDate={todo.finishDate} />
+              )}
+            </div>
           </div>
           <div className='completadas'>
             <h1 className='tareas__status'>Tareas completadas</h1>
+            <div className='tareas__content' />
           </div>
         </main>
         <div className='img-div' onClick={toggleOpen}>
           {mode ? <PlusBlack width='25px' height='25px' /> : <PlusWhite width='25px' height='25px' />}
         </div>
       </div>
-      {isOpen && <NewNote toggleOpen={toggleOpen} handleCreate={handleCreate} />}
+      {isOpen && <NewNote toggleOpen={toggleOpen} handleCreate={handleCreate} theme={theme} />}
     </>
   )
 }
