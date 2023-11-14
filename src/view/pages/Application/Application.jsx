@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 import Header from '../../components/Header/Header'
 import './Application.css'
 import Task from '../../components/Task/Task'
 import NewNote from '../../components/NewNote/NewNote'
 import { PlusWhite } from '../../components/Logos/plus/PlusWhite'
 import { PlusBlack } from '../../components/Logos/plus/PlusBlack'
+import { TaskState } from '../../context/Task/TaskState'
+import { TaskContext } from '../../context/Task/TaskContext'
+
+export const ThemeContext = createContext(null)
 
 export default function Application () {
-  const [mode, setMode] = useState(false)
+  const [theme, setTheme] = useState('dark')
 
-  const theme = mode ? 'light' : 'dark'
-
-  const toggleMode = () => {
-    setMode(!mode)
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark')
   }
 
   const [isOpen, setIsOpen] = useState(false)
@@ -22,17 +24,6 @@ export default function Application () {
     console.log(isOpen)
   }
 
-  useEffect(() => {
-    fetch('https://birsbane-numbat-zjcf.1.us-1.fl0.io/api/todo?userId=' + userID)
-      .then(response => {
-        if (response.ok) return response.json()
-        throw new Error('Error al recoger las notas')
-      }).then((data) => {
-        globalThis.localStorage.setItem('TODOS', JSON.stringify(data.todos))
-      })
-  }, [])
-
-  const todos = JSON.parse(globalThis.localStorage.getItem('TODOS'))
 
   const user = JSON.parse(globalThis.localStorage.getItem('USER'))
 
@@ -61,30 +52,40 @@ export default function Application () {
     event.target.reset()
   }
 
+  const { getTasks } = useContext(TaskContext)
+
+  useEffect(() => {
+    getTasks()
+  }, [])
+
+  const todos = JSON.parse(globalThis.localStorage.getItem('TODOS'))
+
   return (
-    <>
-      <div className='application' theme={theme}>
-        <Header toggleMode={toggleMode} theme={theme} mode={mode} />
-        <input className='search' type='text' name='search' id='search' placeholder='Busca una nota...' />
-        <main className='tareas'>
-          <div className='pendientes'>
-            <h1 className='tareas__status'>Tareas pendientes</h1>
-            <div className='tareas__content'>
-              {todos.map(todo =>
-                <Task key={todo._id} title={todo.name} description={todo.description} finishDate={todo.finishDate} />
-              )}
+    <TaskState>
+      <ThemeContext.Provider value={theme}>
+        <Header toggleMode={toggleTheme} mode={theme} />
+        <div className='application' theme={theme}>
+          <input className='search' type='text' name='search' id='search' placeholder='Busca una nota...' />
+          <main className='tareas'>
+            <div className='pendientes'>
+              <h1 className='tareas__status'>Tareas pendientes</h1>
+              <div className='tareas__content'>
+                {todos.map(todo =>
+                  <Task key={todo._id} title={todo.name} description={todo.description} finishDate={todo.finishDate} />
+                )}
+              </div>
             </div>
+            <div className='completadas'>
+              <h1 className='tareas__status'>Tareas completadas</h1>
+              <div className='tareas__content' />
+            </div>
+          </main>
+          <div className='img-div' onClick={toggleOpen}>
+            {theme === 'dark' ? <PlusWhite width='25px' height='25px' /> : <PlusBlack width='25px' height='25px' />}
           </div>
-          <div className='completadas'>
-            <h1 className='tareas__status'>Tareas completadas</h1>
-            <div className='tareas__content' />
-          </div>
-        </main>
-        <div className='img-div' onClick={toggleOpen}>
-          {mode ? <PlusBlack width='25px' height='25px' /> : <PlusWhite width='25px' height='25px' />}
         </div>
-      </div>
-      {isOpen && <NewNote toggleOpen={toggleOpen} handleCreate={handleCreate} theme={theme} />}
-    </>
+        {isOpen && <NewNote toggleOpen={toggleOpen} handleCreate={handleCreate} />}
+      </ThemeContext.Provider>
+    </TaskState>
   )
 }

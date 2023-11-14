@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './NewNote.css'
+import { ThemeContext } from '../../pages/Application/Application'
 
-export default function NewNote ({ toggleOpen, handleCreate, theme }) {
+export default function NewNote ({ toggleOpen, handleCreate }) {
+  const theme = useContext(ThemeContext)
+
   return (
     <div className='background' theme={theme}>
       <div className='modal'>
