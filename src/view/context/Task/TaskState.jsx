@@ -20,6 +20,7 @@ export const TaskState = ({ children }) => {
         throw new Error('Error al recoger las notas')
       }).then((data) => {
         globalThis.localStorage.setItem('TODOS', JSON.stringify(data.todos))
+        console.log(data.todos)
         dispatch({
           type: 'GET_TASKS',
           payload: data.todos

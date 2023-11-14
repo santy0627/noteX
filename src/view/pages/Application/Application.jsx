@@ -5,7 +5,6 @@ import Task from '../../components/Task/Task'
 import NewNote from '../../components/NewNote/NewNote'
 import { PlusWhite } from '../../components/Logos/plus/PlusWhite'
 import { PlusBlack } from '../../components/Logos/plus/PlusBlack'
-import { TaskState } from '../../context/Task/TaskState'
 import { TaskContext } from '../../context/Task/TaskContext'
 
 export const ThemeContext = createContext(null)
@@ -23,7 +22,6 @@ export default function Application () {
     setIsOpen(!isOpen)
     console.log(isOpen)
   }
-
 
   const user = JSON.parse(globalThis.localStorage.getItem('USER'))
 
@@ -52,40 +50,37 @@ export default function Application () {
     event.target.reset()
   }
 
-  const { getTasks } = useContext(TaskContext)
+  const { tasks, getTasks } = useContext(TaskContext)
 
   useEffect(() => {
     getTasks()
+    console.log(tasks)
   }, [])
 
-  const todos = JSON.parse(globalThis.localStorage.getItem('TODOS'))
-
   return (
-    <TaskState>
-      <ThemeContext.Provider value={theme}>
-        <Header toggleMode={toggleTheme} mode={theme} />
-        <div className='application' theme={theme}>
-          <input className='search' type='text' name='search' id='search' placeholder='Busca una nota...' />
-          <main className='tareas'>
-            <div className='pendientes'>
-              <h1 className='tareas__status'>Tareas pendientes</h1>
-              <div className='tareas__content'>
-                {todos.map(todo =>
-                  <Task key={todo._id} title={todo.name} description={todo.description} finishDate={todo.finishDate} />
-                )}
-              </div>
+    <ThemeContext.Provider value={theme}>
+      <Header toggleMode={toggleTheme} mode={theme} />
+      <div className='application' theme={theme}>
+        <input className='search' type='text' name='search' id='search' placeholder='Busca una nota...' />
+        <main className='tareas'>
+          <div className='pendientes'>
+            <h1 className='tareas__status'>Tareas pendientes</h1>
+            <div className='tareas__content'>
+              {tasks.map(todo =>
+                <Task key={todo._id} title={todo.name} description={todo.description} finishDate={todo.finishDate} />
+              )}
             </div>
-            <div className='completadas'>
-              <h1 className='tareas__status'>Tareas completadas</h1>
-              <div className='tareas__content' />
-            </div>
-          </main>
-          <div className='img-div' onClick={toggleOpen}>
-            {theme === 'dark' ? <PlusWhite width='25px' height='25px' /> : <PlusBlack width='25px' height='25px' />}
           </div>
+          <div className='completadas'>
+            <h1 className='tareas__status'>Tareas completadas</h1>
+            <div className='tareas__content' />
+          </div>
+        </main>
+        <div className='img-div' onClick={toggleOpen}>
+          {theme === 'dark' ? <PlusWhite width='25px' height='25px' /> : <PlusBlack width='25px' height='25px' />}
         </div>
-        {isOpen && <NewNote toggleOpen={toggleOpen} handleCreate={handleCreate} />}
-      </ThemeContext.Provider>
-    </TaskState>
+      </div>
+      {isOpen && <NewNote toggleOpen={toggleOpen} handleCreate={handleCreate} />}
+    </ThemeContext.Provider>
   )
 }
