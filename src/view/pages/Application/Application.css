@@ -77,7 +77,7 @@
 .img-div{
   position: absolute;
   left: 30px;
-  bottom: calc(100vh - 50%);
+  bottom: calc((100vh - 100px) - 50%);
   background-color: var(--bg-color-secundary);
   padding: 20px;
   border-radius: 30px;

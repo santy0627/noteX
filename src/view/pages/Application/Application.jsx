@@ -20,7 +20,6 @@ export default function Application () {
 
   const toggleOpen = () => {
     setIsOpen(!isOpen)
-    console.log(isOpen)
   }
 
   const user = JSON.parse(globalThis.localStorage.getItem('USER'))
@@ -54,8 +53,9 @@ export default function Application () {
 
   useEffect(() => {
     getTasks()
-    console.log(tasks)
-  }, [])
+  }, [isOpen])
+
+  const newTasks = tasks
 
   return (
     <ThemeContext.Provider value={theme}>
@@ -63,18 +63,18 @@ export default function Application () {
       <div className='application' theme={theme}>
         <input className='search' type='text' name='search' id='search' placeholder='Busca una nota...' />
         <main className='tareas'>
-          <div className='pendientes'>
+          <article className='pendientes'>
             <h1 className='tareas__status'>Tareas pendientes</h1>
             <div className='tareas__content'>
-              {tasks.map(todo =>
+              {newTasks.map(todo =>
                 <Task key={todo._id} title={todo.name} description={todo.description} finishDate={todo.finishDate} />
               )}
             </div>
-          </div>
-          <div className='completadas'>
+          </article>
+          <article className='completadas'>
             <h1 className='tareas__status'>Tareas completadas</h1>
             <div className='tareas__content' />
-          </div>
+          </article>
         </main>
         <div className='img-div' onClick={toggleOpen}>
           {theme === 'dark' ? <PlusWhite width='25px' height='25px' /> : <PlusBlack width='25px' height='25px' />}
