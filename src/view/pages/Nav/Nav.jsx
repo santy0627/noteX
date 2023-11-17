@@ -32,13 +32,13 @@ export default function Nav () {
     <>
       <header className='cabecera'>
         <div className={`content ${open ? 'active' : 'inactive'}`} ref={menuRef}>
-          <Link to='/inicio' className='title'>
+          <Link to='/' className='title'>
             noteX
           </Link>
           <nav className='nav-bar'>
             <ul className='list'>
               <li className='list__element'>
-                <NavLink className='list__link' to='/inicio' onClick={handleOpen}>
+                <NavLink className='list__link' to='/' onClick={handleOpen}>
                   Inicio
                 </NavLink>
               </li>

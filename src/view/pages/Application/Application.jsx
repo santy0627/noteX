@@ -5,7 +5,7 @@ import Task from '../../components/Task/Task'
 import NewNote from '../../components/NewNote/NewNote'
 import { PlusWhite } from '../../components/Logos/plus/PlusWhite'
 import { PlusBlack } from '../../components/Logos/plus/PlusBlack'
-import { TaskContext } from '../../context/Task/TaskContext'
+import { AppContext } from '../../context/App/AppContext'
 
 export const ThemeContext = createContext(null)
 
@@ -22,20 +22,28 @@ export default function Application () {
     setIsOpen(!isOpen)
   }
 
-  const user = JSON.parse(globalThis.localStorage.getItem('USER'))
+  const { tasks, getTasks, user } = useContext(AppContext)
 
   const userID = user._id
 
   function handleCreate (event) {
     event.preventDefault()
+
+    const date = new Date(event.target.elements.finishDate.value)
+    const dd = date.getDate()
+    const mm = date.getMonth() + 1
+    const yyyy = date.getFullYear()
+    const finishDate = yyyy + '-' + mm + '-' + dd
+
     let body = {}
 
-    for (const element of event.target.elements) {
-      if (element.name) {
-        body = { ...body, [element.name]: element.value }
-      }
-    }
-    body = { ...body, userId: userID, isCompleted: false }
+    body = JSON.stringify({
+      name: event.target.elements.name.value,
+      description: event.target.elements.description.value,
+      finishDate,
+      isCompleted: false,
+      userId: userID
+    })
     fetch('https://birsbane-numbat-zjcf.1.us-1.fl0.io/api/todo', {
       method: 'POST',
       headers: {
@@ -44,12 +52,11 @@ export default function Application () {
       body: JSON.stringify(body)
     }).then(response => {
       if (response.ok) return response.json()
+      console.log(response)
       throw new Error('Error al crear la nota')
     })
     event.target.reset()
   }
-
-  const { tasks, getTasks } = useContext(TaskContext)
 
   useEffect(() => {
     getTasks()
@@ -57,7 +64,10 @@ export default function Application () {
 
   const newTasks = tasks
 
+  console.log(user)
+
   return (
+
     <ThemeContext.Provider value={theme}>
       <Header toggleMode={toggleTheme} mode={theme} />
       <div className='application' theme={theme}>
@@ -66,7 +76,7 @@ export default function Application () {
           <article className='pendientes'>
             <h1 className='tareas__status'>Tareas pendientes</h1>
             <div className='tareas__content'>
-              {newTasks.map(todo =>
+              {newTasks && newTasks.map(todo =>
                 <Task key={todo._id} title={todo.name} description={todo.description} finishDate={todo.finishDate} />
               )}
             </div>
@@ -82,5 +92,6 @@ export default function Application () {
       </div>
       {isOpen && <NewNote toggleOpen={toggleOpen} handleCreate={handleCreate} />}
     </ThemeContext.Provider>
+
   )
 }

@@ -1,35 +1,15 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { useContext } from 'react'
+import { AppContext } from '../../context/App/AppContext'
 import './Login.css'
 
 export default function Login () {
-  const navigate = useNavigate()
-
-  const handleLogin = (event) => {
-    event.preventDefault()
-    fetch('https://birsbane-numbat-zjcf.1.us-1.fl0.io/api/user/auth', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        email: event.target.elements.email.value,
-        password: event.target.elements.password.value
-      })
-    }).then((response) => {
-      if (response.ok) return response.json()
-      throw new Error('Error al autenticar el usuario')
-    }).then((data) => {
-      globalThis.localStorage.setItem('USER', JSON.stringify(data.user))
-      navigate('/app')
-    }).catch(error => {
-      console.log('Error en navegacion' + error)
-    })
-  }
+  const { getUser } = useContext(AppContext)
 
   return (
     <div className='login'>
       <main className='caja-form'>
-        <form className='form' onSubmit={handleLogin}>
+        <form className='form' onSubmit={getUser}>
           <h1 className='form__title'>Ingreso</h1>
 
           <div className='form__campos'>

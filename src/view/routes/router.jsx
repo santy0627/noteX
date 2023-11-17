@@ -17,10 +17,6 @@ export const router = createHashRouter([
         Component: Landing
       },
       {
-        path: 'inicio',
-        Component: Landing
-      },
-      {
         path: 'registro',
         Component: Registro
       },
