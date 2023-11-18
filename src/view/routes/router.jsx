@@ -6,6 +6,7 @@ import Login from '../pages/Login/Login.jsx'
 import Application from '../pages/Application/Application'
 import ProtectedRoute from './ProtectedRoute'
 import ErrorPage from '../pages/ErrorPage/ErrorPage.jsx'
+import { AppState } from '../context/App/AppState.jsx'
 
 export const router = createHashRouter([
   {
@@ -29,6 +30,6 @@ export const router = createHashRouter([
   },
   {
     path: '/app',
-    element: <ProtectedRoute><Application /></ProtectedRoute>
+    element: <ProtectedRoute><AppState><Application /></AppState></ProtectedRoute>
   }
 ])

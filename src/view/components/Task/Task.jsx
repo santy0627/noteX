@@ -7,7 +7,7 @@ import { EditBlack } from '../Logos/edit/EditBlack'
 import { TrashBlack } from '../Logos/trash/TrashBlack'
 
 export default function Task ({ title, description, finishDate }) {
-  const theme = useContext(ThemeContext)
+  const { theme } = useContext(ThemeContext)
 
   return (
     <section className='task'>

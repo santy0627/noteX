@@ -1,10 +1,30 @@
-import { Link } from 'react-router-dom'
-import { useContext } from 'react'
-import { AppContext } from '../../context/App/AppContext'
+import { Link, useNavigate } from 'react-router-dom'
 import './Login.css'
 
 export default function Login () {
-  const { getUser } = useContext(AppContext)
+  const navigate = useNavigate()
+
+  const getUser = (event) => {
+    event.preventDefault()
+    fetch('https://birsbane-numbat-zjcf.1.us-1.fl0.io/api/user/auth', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: event.target.elements.email.value,
+        password: event.target.elements.password.value
+      })
+    }).then((response) => {
+      if (response.ok) return response.json()
+      throw new Error('Error al autenticar el usuario')
+    }).then((response) => {
+      globalThis.localStorage.setItem('USER', JSON.stringify(response.user))
+      navigate('/app')
+    }).catch(error => {
+      console.log('Error en la navegación' + error)
+    })
+  }
 
   return (
     <div className='login'>

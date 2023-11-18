@@ -1,4 +1,4 @@
-import { GET_TASKS, GET_USER, LOGOUT } from '../types'
+import { GET_TASKS, ADD_TASK } from '../types'
 
 export default (state, action) => {
   const { payload, type } = action
@@ -9,17 +9,10 @@ export default (state, action) => {
         ...state,
         tasks: payload
       }
-
-    case GET_USER:
+    case ADD_TASK:
       return {
         ...state,
-        user: payload
-      }
-
-    case LOGOUT:
-      return {
-        ...state,
-        user: null
+        tasks: [...state.tasks, payload]
       }
     default:
       return state

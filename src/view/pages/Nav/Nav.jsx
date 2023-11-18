@@ -4,6 +4,7 @@ import './Nav.css'
 import { Github } from '../../components/Logos/Github'
 import { Email } from '../../components/Logos/Email'
 import { Menu } from '../../components/Logos/Menu'
+import { AppState } from '../../context/App/AppState'
 
 export default function Nav () {
   const [open, setOpen] = useState(false)
@@ -78,7 +79,9 @@ export default function Nav () {
           <Menu width='25' />
         </div>
       </header>
-      <Outlet />
+      <AppState>
+        <Outlet />
+      </AppState>
     </>
   )
 }

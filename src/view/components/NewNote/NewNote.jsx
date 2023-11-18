@@ -1,27 +1,28 @@
 import React, { useContext } from 'react'
 import './NewNote.css'
 import { ThemeContext } from '../../pages/Application/Application'
+import { AppContext } from '../../context/App/AppContext'
 
-export default function NewNote ({ toggleOpen, handleCreate }) {
-  const theme = useContext(ThemeContext)
+export default function NewNote () {
+  const { theme } = useContext(ThemeContext)
+
+  const { createTask } = useContext(AppContext)
 
   return (
-    <div className='background' theme={theme}>
-      <div className='modal'>
-        <header className='modal__header'>
-          <h1 className='modal__header-title'>Crear nota nueva</h1>
-        </header>
-        <form className='form-modal' onSubmit={handleCreate}>
-          <input className='form-modal__name' type='text' name='name' placeholder='Nombre de tu nota' />
-          <input className='form-modal__description' type='text' name='description' placeholder='Descripción de la nota' />
-          <input className='form-modal__date' type='date' name='finishDate' id='date' placeholder='hola' />
+    <div className='modal' theme={theme}>
+      <header className='modal__header'>
+        <h1 className='modal__header-title'>Crear nota nueva</h1>
+      </header>
+      <form className='form-modal' onSubmit={createTask}>
+        <input className='form-modal__name' type='text' name='name' placeholder='Nombre de tu nota' />
+        <input className='form-modal__description' type='text' name='description' placeholder='Descripción de la nota' />
+        <input className='form-modal__date' type='date' name='finishDate' id='date' placeholder='hola' />
 
-          <div className='buttons'>
-            <button className='boton cancel' onClick={toggleOpen}>Cancelar</button>
-            <button className='boton submit' type='submit'>Crear nota</button>
-          </div>
-        </form>
-      </div>
+        <div className='buttons'>
+          <button className='boton cancel'>Cancelar</button>
+          <button className='boton submit' type='submit'>Crear nota</button>
+        </div>
+      </form>
     </div>
   )
 }
