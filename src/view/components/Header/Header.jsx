@@ -6,10 +6,9 @@ import { UserWhite } from '../Logos/user/UserWhite'
 import './Header.css'
 import { Link } from 'react-router-dom'
 import { ThemeContext } from '../../pages/Application/Application'
+import { user } from '../../context/User'
 
 export default function Header () {
-  const user = JSON.parse(globalThis.localStorage.getItem('USER'))
-
   const deleteUser = () => {
     globalThis.localStorage.removeItem('USER')
   }

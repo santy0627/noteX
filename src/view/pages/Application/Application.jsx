@@ -29,7 +29,8 @@ export default function Application () {
             <h1 className='tareas__status'>Tareas pendientes</h1>
             <div className='tareas__content'>
               {tasks && tasks.map(todo =>
-                <Task key={todo._id} title={todo.name} description={todo.description} finishDate={todo.finishDate} />
+
+                <Task key={todo._id} title={todo.name} description={todo.description} finishDate={todo.finishDate} taskId={todo._id} />
               )}
             </div>
           </article>

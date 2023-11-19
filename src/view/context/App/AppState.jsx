@@ -27,9 +27,9 @@ export const AppState = ({ children }) => {
     event.preventDefault()
 
     const date = new Date(event.target.elements.finishDate.value)
-    const dd = date.getDate()
-    const mm = date.getMonth() + 1
-    const yyyy = date.getFullYear()
+    const dd = date.getDate(date)
+    const mm = date.getMonth(date) + 1
+    const yyyy = date.getFullYear(date)
     const finishDate = yyyy + '-' + mm + '-' + dd
 
     let body = {}
@@ -59,8 +59,21 @@ export const AppState = ({ children }) => {
     event.target.reset()
   }
 
-  const deleteTask = () => {
-
+  const deleteTask = (taskId) => {
+    fetch('https://birsbane-numbat-zjcf.1.us-1.fl0.io/api/todo/' + taskId, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then((response) => {
+      if (response.ok) return response.json()
+      throw new Error('Error al eliminar la tarea')
+    }).then((response) => {
+      dispatch({
+        type: 'DELETE_TASK',
+        payload: response.todo._id
+      })
+    })
   }
 
   return (
