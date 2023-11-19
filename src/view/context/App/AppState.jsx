@@ -6,7 +6,8 @@ export const AppState = ({ children }) => {
   const initialState = {
     tasks: [],
     selectedTask: null,
-    user: null
+    user: null,
+    userLogged: null
   }
 
   const [state, dispatch] = useReducer(AppReducer, initialState)
@@ -154,6 +155,7 @@ export const AppState = ({ children }) => {
         payload: response.todo
       })
     })
+    event.target.reset()
   }
   const logoutUser = () => {
     dispatch({
@@ -162,11 +164,25 @@ export const AppState = ({ children }) => {
     })
   }
 
+  const getUserLogged = () => {
+    fetch('https://birsbane-numbat-zjcf.1.us-1.fl0.io/api/user/' + state.user._id)
+      .then((response) => {
+        if (response.ok) return response.json()
+        throw new Error('Error al recoger datos del usuario')
+      }).then((response) => {
+        dispatch({
+          type: 'GET_USER',
+          payload: response.user
+        })
+      })
+  }
+
   return (
     <AppContext.Provider value={{
       tasks: state.tasks,
       selectedTask: state.selectedTask,
       user: state.user,
+      userLogged: state.userLogged,
       dispatch,
       getTasks,
       createTask,
@@ -175,7 +191,8 @@ export const AppState = ({ children }) => {
       selectTask,
       updateTask,
       deleteSelectedTask,
-      logoutUser
+      logoutUser,
+      getUserLogged
     }}
     >
       {children}

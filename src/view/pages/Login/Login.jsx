@@ -4,7 +4,7 @@ import { useContext } from 'react'
 import { AppContext } from '../../context/App/AppContext'
 
 export default function Login () {
-  const { dispatch, user } = useContext(AppContext)
+  const { dispatch } = useContext(AppContext)
 
   const navigate = useNavigate()
 
@@ -33,7 +33,6 @@ export default function Login () {
     })
   }
 
-  console.log(user)
   return (
     <div className='login'>
       <main className='caja-form'>

@@ -1,4 +1,4 @@
-import { GET_TASKS, ADD_TASK, DELETE_TASK, COMPLETE_TASK, SELECT_TASK, UPDATE_TASK, DELETE_SELECTED_TASK, GET_USER, LOGOUT } from '../types'
+import { GET_TASKS, ADD_TASK, DELETE_TASK, COMPLETE_TASK, SELECT_TASK, UPDATE_TASK, DELETE_SELECTED_TASK, GET_USER, LOGOUT, DELETE_USER, UPDATE_USER } from '../types'
 
 export default (state, action) => {
   const { payload, type } = action
@@ -34,7 +34,8 @@ export default (state, action) => {
     case UPDATE_TASK:
       return {
         ...state,
-        tasks: state.tasks.map(task => task._id === payload._id ? payload : task)
+        tasks: state.tasks.map(task => task._id === payload._id ? payload : task),
+        selectedTask: null
       }
     case DELETE_SELECTED_TASK:
       return {
@@ -44,12 +45,24 @@ export default (state, action) => {
     case GET_USER:
       return {
         ...state,
-        user: payload
+        user: payload,
+        userLogged: payload
       }
     case LOGOUT:
       return {
         ...state,
         user: null
+      }
+    case UPDATE_USER:
+      return {
+        ...state,
+        user: payload
+      }
+    case DELETE_USER:
+      return {
+        ...state,
+        user: null,
+        userLogged: null
       }
     default:
       return state

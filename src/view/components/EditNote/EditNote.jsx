@@ -15,9 +15,9 @@ export default function EditNote () {
         <h1 className='modal__header-title'>Editar nota</h1>
       </header>
       <form className='form-modal' onSubmit={updateTask}>
-        <input className='form-modal__name' type='text' name='name' placeholder={selectedTask.name} />
-        <textarea className='form-modal__description' type='text' name='description' placeholder={selectedTask.description} />
-        <input className='form-modal__date' type='date' name='finishDate' id='date' placeholder={selectedTask.finishDate} />
+        <input className='form-modal__name' type='text' name='name' defaultValue={selectedTask.name} />
+        <textarea className='form-modal__description' type='text' name='description' defaultValue={selectedTask.description} />
+        <input className='form-modal__date' type='date' name='finishDate' id='date' defaultValue={selectedTask.finishDate} />
 
         <div className='buttons'>
           <button className='boton cancel' onClick={() => deleteSelectedTask(taskId)}>Cancelar</button>
