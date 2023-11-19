@@ -73,7 +73,7 @@
 }
 
 .boton:hover{
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 
 .boton.submit{
@@ -84,6 +84,7 @@
   background-color: var(--red-color);
 }
 
-.boton.submit.solo{
+.boton.submit.solo,
+.boton.cancel.solo{
   width: 100%;
 }

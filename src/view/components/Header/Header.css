@@ -52,6 +52,10 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition: transform .3s ease;
+}
+.user:hover{
+  transform: scale(1.2);
 }
 
 .mode{

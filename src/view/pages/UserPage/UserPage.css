@@ -10,24 +10,24 @@
 
 .user-card{
   background-color: var(--bg-color-secundary);
-  width: 50%;
-  height: 60%;
+  width: 800px;
+  height: max-content;
   border-radius: 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 30px;
-  padding: 30px;
+  padding: 50px 30px;
   flex-direction: column;
 }
 
-.user-info__card,
+.user-card__info,
 .user-info__edit{
   width: 100%;
   border-radius: 30px;
 }
-
-.user-info__card{
+/* CARD DE INFORMACION*/
+.user-card__info{
   background-color: var(--bg-color);
   padding: 20px;
   display: flex;
@@ -64,4 +64,65 @@
 
 .logout{
   cursor: pointer;
+  transition: transform .3s ease;
+}
+
+.back{
+  position: absolute;
+  left: 40px;
+  bottom: calc(100vh - 50%);
+  transition: transform .3s ease;
+}
+
+.back:hover,
+.logout:hover{
+  transform: scale(1.2);
+}
+
+/* FORMULARIO PARA ACT EL USER */
+
+.user-info__edit{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.user-info__title{
+  background: linear-gradient(70deg, var(--green-color) 5%,var(--blue-color));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--blue-color);
+  font-size: 45px;
+}
+
+.user-form{
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.user-form__campos{
+  display: flex;
+  flex-direction: column;
+  color: var(--color-text);
+}
+
+.user-form__label{
+  color: var(--color-text);
+  opacity: .7;
+}
+
+.user-form__campo{
+  width: 100%;
+  padding: 10px;
+  border-radius: 30px;
+  border: none;
+  background-color: var(--bg-color);
+  color: var(--color-text);
+  margin-bottom: 20px;
 }

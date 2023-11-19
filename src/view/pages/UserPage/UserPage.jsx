@@ -6,6 +6,7 @@ import { ProfileWhite, ProfileBlack } from '../../components/Logos/Profile'
 import { LogoutWhite } from '../../components/Logos/Logout/LogoutWhite'
 import { LogoutBlack } from '../../components/Logos/Logout/LogoutBlack'
 import { Link } from 'react-router-dom'
+import { BackBlack, BackWhite } from '../../components/Logos/Back'
 
 export default function UserPage () {
   const { theme } = useContext(ThemeContext)
@@ -14,8 +15,11 @@ export default function UserPage () {
   console.log(user)
   return (
     <main className='userPage' theme={theme}>
+      <Link to='/app' className='back'>
+        {theme === 'dark' ? <BackWhite width='60px' height='60px' /> : <BackBlack width='60px' height='60px' />}
+      </Link>
       <article className='user-card'>
-        <section className='user-info__card'>
+        <section className='user-card__info'>
           <div className='user-div'>
             <div className='user-img'>
               {theme === 'dark' ? <ProfileBlack width='80px' /> : <ProfileWhite width='80px' />}
@@ -32,7 +36,25 @@ export default function UserPage () {
           </div>
         </section>
         <div className='user-info__edit'>
-          edit
+          <h1 className='user-info__title'>Edita tu usuario!</h1>
+          <form className='user-form'>
+            <div className='user-from__campos'>
+              <label className='user-form__label'>Nombre</label>
+              <input className='user-form__campo' name='firstName' type='text' placeholder={user.firstName} />
+
+              <label className='user-form__label'>Apellido</label>
+              <input className='user-form__campo' name='lastName' type='text' placeholder={user.lastName} />
+
+              <label className='user-form__label'>Correo</label>
+              <input className='user-form__campo' name='email' type='email' placeholder={user.email} />
+
+              <label className='user-form__label'>Contraseña</label>
+              <input className='user-form__campo' name='password' type='password' placeholder='********' />
+            </div>
+
+            <button type='submit' className='boton submit solo'>Actualizar</button>
+            <button className='boton cancel solo'>Eliminar usuario</button>
+          </form>
         </div>
       </article>
     </main>
