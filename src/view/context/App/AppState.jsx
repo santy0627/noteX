@@ -5,7 +5,8 @@ import { userID } from '../User'
 
 export const AppState = ({ children }) => {
   const initialState = {
-    tasks: []
+    tasks: [],
+    selectedTask: null
   }
 
   const [state, dispatch] = useReducer(AppReducer, initialState)
@@ -76,13 +77,42 @@ export const AppState = ({ children }) => {
     })
   }
 
+  const completeTask = ({ title, description, newDate, taskId }) => {
+    let body = {}
+
+    body = {
+      name: title,
+      description,
+      finishDate: newDate,
+      isCompleted: true,
+      userId: userID,
+      _id: taskId
+    }
+    fetch('https://birsbane-numbat-zjcf.1.us-1.fl0.io/api/todo', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    }).then((response) => {
+      if (response.ok) return response.json()
+      throw new Error('Error al completar la tarea')
+    }).then((response) => {
+      dispatch({
+        type: 'COMPLETE_TASK',
+        payload: response.todo
+      })
+    })
+  }
+
   return (
     <AppContext.Provider value={{
       tasks: state.tasks,
       user: state.user,
       getTasks,
       createTask,
-      deleteTask
+      deleteTask,
+      completeTask
     }}
     >
       {children}

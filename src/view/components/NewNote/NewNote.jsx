@@ -15,7 +15,7 @@ export default function NewNote () {
       </header>
       <form className='form-modal' onSubmit={createTask}>
         <input className='form-modal__name' type='text' name='name' placeholder='Nombre de tu nota' />
-        <input className='form-modal__description' type='text' name='description' placeholder='Descripción de la nota' />
+        <textarea className='form-modal__description' type='text' name='description' placeholder='Descripción de la nota' />
         <input className='form-modal__date' type='date' name='finishDate' id='date' placeholder='hola' />
 
         <div className='buttons'>

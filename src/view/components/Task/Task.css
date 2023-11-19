@@ -14,13 +14,13 @@
 
 }
 
-/*.task{
+.task.incomplete{
   border-left: 20px solid var(--red-color);
 }
 
-.task{
+.task.complete{
   border-left: 20px solid var(--green-color);
-}*/
+}
 
 .task__title,
 .task__description{
@@ -38,14 +38,34 @@
 .task__options{
   width: 20%;
   height: 100%;
-  border-radius: 0px 30px 30px 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   cursor: pointer;
 }
 
-.task__options:hover{
+.task__delete,
+.task__complete{
+  height: 50%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.task__delete{
+  border-radius: 0px 30px 0px 0px;
+}
+
+.task__delete:hover{
   background-color: var(--red-color);
+}
+
+.task__complete{
+  border-radius: 0px 0px 30px 0px;
+}
+
+.task__complete:hover{
+  background-color: var(--green-color);
 }

@@ -13,11 +13,15 @@ export default function Application () {
   const toggleTheme = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark')
   }
-  const { getTasks, tasks } = useContext(AppContext)
+  const { getTasks, tasks, selectTask } = useContext(AppContext)
 
   useEffect(() => {
     getTasks()
   }, [])
+
+  const incompletedTasks = tasks.filter(task => task.isCompleted === false)
+
+  const completedTasks = tasks.filter(task => task.isCompleted === true)
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
@@ -28,15 +32,20 @@ export default function Application () {
           <article className='pendientes'>
             <h1 className='tareas__status'>Tareas pendientes</h1>
             <div className='tareas__content'>
-              {tasks && tasks.map(todo =>
+              {incompletedTasks && incompletedTasks.map(todo =>
 
-                <Task key={todo._id} title={todo.name} description={todo.description} finishDate={todo.finishDate} taskId={todo._id} />
+                <Task key={todo._id} title={todo.name} description={todo.description} finishDate={todo.finishDate} taskId={todo._id} estado={todo.isCompleted} />
               )}
             </div>
           </article>
           <article className='completadas'>
             <h1 className='tareas__status'>Tareas completadas</h1>
-            <div className='tareas__content' />
+            <div className='tareas__content'>
+              {completedTasks && completedTasks.map(todo =>
+
+                <Task key={todo._id} title={todo.name} description={todo.description} finishDate={todo.finishDate} taskId={todo._id} estado={todo.isCompleted} />
+              )}
+            </div>
           </article>
           <NewNote />
         </main>

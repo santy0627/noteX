@@ -52,6 +52,7 @@
 
 .form-modal__description{
   height: 80%;
+  resize: none;
 }
 
 .buttons{
