@@ -6,7 +6,8 @@ import Login from '../pages/Login/Login.jsx'
 import Application from '../pages/Application/Application'
 import ProtectedRoute from './ProtectedRoute'
 import ErrorPage from '../pages/ErrorPage/ErrorPage.jsx'
-import { AppState } from '../context/App/AppState.jsx'
+import Header from '../components/Header/Header.jsx'
+import UserPage from '../pages/UserPage/UserPage.jsx'
 
 export const router = createHashRouter([
   {
@@ -30,6 +31,16 @@ export const router = createHashRouter([
   },
   {
     path: '/app',
-    element: <ProtectedRoute><AppState><Application /></AppState></ProtectedRoute>
+    element: <ProtectedRoute><Header /></ProtectedRoute>,
+    children: [
+      {
+        path: '',
+        Component: Application
+      },
+      {
+        path: 'user',
+        Component: UserPage
+      }
+    ]
   }
 ])

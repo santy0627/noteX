@@ -1,4 +1,4 @@
-import { GET_TASKS, ADD_TASK, DELETE_TASK, COMPLETE_TASK, SELECT_TASK, UPDATE_TASK, DELETE_SELECTED_TASK } from '../types'
+import { GET_TASKS, ADD_TASK, DELETE_TASK, COMPLETE_TASK, SELECT_TASK, UPDATE_TASK, DELETE_SELECTED_TASK, GET_USER, LOGOUT } from '../types'
 
 export default (state, action) => {
   const { payload, type } = action
@@ -40,6 +40,16 @@ export default (state, action) => {
       return {
         ...state,
         selectedTask: null
+      }
+    case GET_USER:
+      return {
+        ...state,
+        user: payload
+      }
+    case LOGOUT:
+      return {
+        ...state,
+        user: null
       }
     default:
       return state

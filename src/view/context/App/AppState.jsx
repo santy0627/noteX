@@ -1,18 +1,18 @@
 import React, { useReducer } from 'react'
 import { AppContext } from './AppContext'
 import AppReducer from './AppReducer'
-import { userID } from '../User'
 
 export const AppState = ({ children }) => {
   const initialState = {
     tasks: [],
-    selectedTask: null
+    selectedTask: null,
+    user: null
   }
 
   const [state, dispatch] = useReducer(AppReducer, initialState)
 
   const getTasks = () => {
-    fetch('https://birsbane-numbat-zjcf.1.us-1.fl0.io/api/todo?userId=' + userID)
+    fetch('https://birsbane-numbat-zjcf.1.us-1.fl0.io/api/todo?userId=' + state.user._id)
       .then(response => {
         if (response.ok) return response.json()
         throw new Error('Error al recoger las notas')
@@ -40,7 +40,7 @@ export const AppState = ({ children }) => {
       description: event.target.elements.description.value,
       finishDate,
       isCompleted: false,
-      userId: userID
+      userId: state.user._id
     }
     fetch('https://birsbane-numbat-zjcf.1.us-1.fl0.io/api/todo', {
       method: 'POST',
@@ -85,7 +85,7 @@ export const AppState = ({ children }) => {
       description,
       finishDate: newDate,
       isCompleted: true,
-      userId: userID,
+      userId: state.user._id,
       _id: taskId
     }
     fetch('https://birsbane-numbat-zjcf.1.us-1.fl0.io/api/todo', {
@@ -135,7 +135,7 @@ export const AppState = ({ children }) => {
       description: event.target.elements.description.value,
       finishDate,
       isCompleted: false,
-      userId: userID,
+      userId: state.user._id,
       _id: taskID
     }
     console.log(body)
@@ -155,18 +155,27 @@ export const AppState = ({ children }) => {
       })
     })
   }
+  const logoutUser = () => {
+    dispatch({
+      type: 'LOGOUT',
+      payload: state.user._id
+    })
+  }
 
   return (
     <AppContext.Provider value={{
       tasks: state.tasks,
       selectedTask: state.selectedTask,
+      user: state.user,
+      dispatch,
       getTasks,
       createTask,
       deleteTask,
       completeTask,
       selectTask,
       updateTask,
-      deleteSelectedTask
+      deleteSelectedTask,
+      logoutUser
     }}
     >
       {children}

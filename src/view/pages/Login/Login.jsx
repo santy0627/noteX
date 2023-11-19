@@ -1,7 +1,11 @@
 import { Link, useNavigate } from 'react-router-dom'
 import './Login.css'
+import { useContext } from 'react'
+import { AppContext } from '../../context/App/AppContext'
 
 export default function Login () {
+  const { dispatch, user } = useContext(AppContext)
+
   const navigate = useNavigate()
 
   const getUser = (event) => {
@@ -19,13 +23,17 @@ export default function Login () {
       if (response.ok) return response.json()
       throw new Error('Error al autenticar el usuario')
     }).then((response) => {
-      globalThis.localStorage.setItem('USER', JSON.stringify(response.user))
+      dispatch({
+        type: 'GET_USER',
+        payload: response.user
+      })
       navigate('/app')
     }).catch(error => {
       console.log('Error en la navegación' + error)
     })
   }
 
+  console.log(user)
   return (
     <div className='login'>
       <main className='caja-form'>

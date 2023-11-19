@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import './NewNote.css'
-import { ThemeContext } from '../../pages/Application/Application'
+import { ThemeContext } from '../../components/Header/Header'
 import { AppContext } from '../../context/App/AppContext'
 
 export default function NewNote () {

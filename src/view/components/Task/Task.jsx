@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import './Task.css'
-import { ThemeContext } from '../../pages/Application/Application'
+import { ThemeContext } from '../../components/Header/Header'
 import { TrashWhite } from '../Logos/trash/TrashWhite'
 import { TrashBlack } from '../Logos/trash/TrashBlack'
 import { AppContext } from '../../context/App/AppContext'

@@ -47,6 +47,13 @@
   font-size: 22px;
 }
 
+.user{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
 .mode{
   width: min-content;
   height: max-content;

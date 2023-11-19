@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { ThemeContext } from '../../pages/Application/Application'
+import { ThemeContext } from '../../components/Header/Header'
 import { AppContext } from '../../context/App/AppContext'
 
 export default function EditNote () {
