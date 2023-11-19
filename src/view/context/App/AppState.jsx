@@ -7,7 +7,8 @@ export const AppState = ({ children }) => {
     tasks: [],
     selectedTask: null,
     user: null,
-    userLogged: null
+    userLogged: null,
+    filteredTasks: []
   }
 
   const [state, dispatch] = useReducer(AppReducer, initialState)
@@ -177,12 +178,20 @@ export const AppState = ({ children }) => {
       })
   }
 
+  const getFilteredTasks = () => {
+    dispatch({
+      type: 'GET_FILTERED_TASKS',
+      payload: state.tasks
+    })
+  }
+
   return (
     <AppContext.Provider value={{
       tasks: state.tasks,
       selectedTask: state.selectedTask,
       user: state.user,
       userLogged: state.userLogged,
+      filteredTasks: state.filteredTasks,
       dispatch,
       getTasks,
       createTask,
@@ -192,7 +201,8 @@ export const AppState = ({ children }) => {
       updateTask,
       deleteSelectedTask,
       logoutUser,
-      getUserLogged
+      getUserLogged,
+      getFilteredTasks
     }}
     >
       {children}

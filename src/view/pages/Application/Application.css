@@ -9,15 +9,51 @@
   justify-content: center;
 }
 
-.search{
-  margin-top: 30px;
+.form-search{
   width: 60%;
+  display: flex; 
+  margin-top: 30px;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.search-date{
+  display: flex;
+  width: 100%;
+  gap: 10px;
+}
+
+.search__startDate,
+.search__endDate{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.search{
+  width: 100%;
   padding: 10px 25px;
   border-radius: 30px;
   background-color: var(--bg-color-secundary);
   color:var(--color-text);
   border: none;
   font-size: 20px;
+}
+.search-date__camp{
+  width: 100%;
+  padding: 10px 25px;
+  border-radius: 30px;
+  background-color: var(--bg-color-secundary);
+  color:var(--color-text);
+  border: none;
+  font-size: 20px;
+}
+
+.search-label{
+  color: var(--color-text);
+  font-size: 16px;
 }
 
 .tareas{

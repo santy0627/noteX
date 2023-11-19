@@ -1,0 +1,18 @@
+.add-task{
+  background-color: var(--bg-color-secundary);
+  padding: 30px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 450px;
+  color: var(--color-text);
+  height: 70%;
+}
+
+.add-task__link{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

@@ -1,26 +1,18 @@
-import React, { useContext, useEffect } from 'react'
-import './Application.css'
-import Task from '../../components/Task/Task'
-import NewNote from '../../components/NewNote/NewNote'
-import { AppContext } from '../../context/App/AppContext'
-import EditNote from '../../components/EditNote/EditNote'
+import React, { useContext } from 'react'
 import { ThemeContext } from '../../components/Header/Header'
-import { useNavigate } from 'react-router-dom'
+import { AppContext } from '../../context/App/AppContext'
+import Task from '../../components/Task/Task'
+import { Link } from 'react-router-dom'
+import { PlusBlack, PlusWhite } from '../../components/Logos/Plus'
+import './SearchPage.css'
 
-export default function Application () {
-  const { getTasks, tasks, selectedTask, user, dispatch } = useContext(AppContext)
-
-  useEffect(() => {
-    getTasks()
-  }, [])
-
-  const incompletedTasks = tasks.filter(task => task.isCompleted === false)
-
-  const completedTasks = tasks.filter(task => task.isCompleted === true)
-
+export default function SearchPage () {
   const { theme } = useContext(ThemeContext)
 
-  const navigate = useNavigate()
+  const { filteredTasks, user, dispatch } = useContext(AppContext)
+
+  const incompletedTasks = filteredTasks.filter(task => task.isCompleted === false)
+  const completedTasks = filteredTasks.filter(task => task.isCompleted === true)
 
   const searchTasks = (event) => {
     event.preventDefault()
@@ -36,11 +28,9 @@ export default function Application () {
         type: 'GET_FILTERED_TASKS',
         payload: response.todos
       })
-      navigate('/app/search')
     })
     event.target.reset()
   }
-
   return (
     <div className='application' theme={theme}>
       <form className='form-search' onSubmit={searchTasks}>
@@ -76,7 +66,12 @@ export default function Application () {
             )}
           </div>
         </article>
-        {selectedTask ? <EditNote /> : <NewNote />}
+        <div className='add-task'>
+          <h1 className='modal__header-title'>Crear nota nueva</h1>
+          <Link to='/app' className='add-task__link'>
+            {theme === 'dark' ? <PlusWhite width='100px' height='100px' /> : <PlusBlack width='100px' height='100px' />}
+          </Link>
+        </div>
       </main>
     </div>
   )

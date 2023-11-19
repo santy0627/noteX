@@ -8,6 +8,7 @@ import ProtectedRoute from './ProtectedRoute'
 import ErrorPage from '../pages/ErrorPage/ErrorPage.jsx'
 import Header from '../components/Header/Header.jsx'
 import UserPage from '../pages/UserPage/UserPage.jsx'
+import SearchPage from '../pages/SearchPage/SearchPage.jsx'
 
 export const router = createHashRouter([
   {
@@ -40,6 +41,10 @@ export const router = createHashRouter([
       {
         path: 'user',
         Component: UserPage
+      },
+      {
+        path: 'search',
+        Component: SearchPage
       }
     ]
   }

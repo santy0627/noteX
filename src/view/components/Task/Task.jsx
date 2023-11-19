@@ -12,7 +12,7 @@ export default function Task ({ title, description, finishDate, taskId, estado }
   const { deleteTask, completeTask, selectTask } = useContext(AppContext)
 
   const date = new Date(finishDate)
-  const dd = date.getDate(date) + 2
+  const dd = date.getDate(date) + 1
   const mm = date.getMonth(date) + 1
   const yyyy = date.getFullYear(date)
   const newDate = yyyy + '-' + mm + '-' + dd
