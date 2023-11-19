@@ -105,14 +105,68 @@ export const AppState = ({ children }) => {
     })
   }
 
+  const selectTask = (taskId) => {
+    dispatch({
+      type: 'SELECT_TASK',
+      payload: taskId
+    })
+  }
+
+  const deleteSelectedTask = (taskId) => {
+    dispatch({
+      type: 'DELETE_SELECTED_TASK',
+      payload: taskId
+    })
+  }
+
+  const updateTask = (event) => {
+    event.preventDefault()
+
+    const date = new Date(event.target.elements.finishDate.value)
+    const dd = date.getDate(date)
+    const mm = date.getMonth(date) + 1
+    const yyyy = date.getFullYear(date)
+    const finishDate = yyyy + '-' + mm + '-' + dd
+
+    let body = {}
+    const taskID = state.selectedTask._id
+    body = {
+      name: event.target.elements.name.value,
+      description: event.target.elements.description.value,
+      finishDate,
+      isCompleted: false,
+      userId: userID,
+      _id: taskID
+    }
+    console.log(body)
+    fetch('https://birsbane-numbat-zjcf.1.us-1.fl0.io/api/todo', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    }).then((response) => {
+      if (response.ok) return response.json()
+      throw new Error('Error al editar la tarea')
+    }).then((response) => {
+      dispatch({
+        type: 'UPDATE_TASK',
+        payload: response.todo
+      })
+    })
+  }
+
   return (
     <AppContext.Provider value={{
       tasks: state.tasks,
-      user: state.user,
+      selectedTask: state.selectedTask,
       getTasks,
       createTask,
       deleteTask,
-      completeTask
+      completeTask,
+      selectTask,
+      updateTask,
+      deleteSelectedTask
     }}
     >
       {children}

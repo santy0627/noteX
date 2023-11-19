@@ -81,6 +81,9 @@
 }
 
 .boton.cancel{
-  color: var(--color-text);
   background-color: var(--red-color);
+}
+
+.boton.submit.solo{
+  width: 100%;
 }

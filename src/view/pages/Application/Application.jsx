@@ -4,6 +4,7 @@ import './Application.css'
 import Task from '../../components/Task/Task'
 import NewNote from '../../components/NewNote/NewNote'
 import { AppContext } from '../../context/App/AppContext'
+import EditNote from '../../components/EditNote/EditNote'
 
 export const ThemeContext = createContext(null)
 
@@ -13,7 +14,7 @@ export default function Application () {
   const toggleTheme = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark')
   }
-  const { getTasks, tasks, selectTask } = useContext(AppContext)
+  const { getTasks, tasks, selectedTask } = useContext(AppContext)
 
   useEffect(() => {
     getTasks()
@@ -25,7 +26,7 @@ export default function Application () {
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <Header toggleMode={toggleTheme} mode={theme} />
+      <Header />
       <div className='application' theme={theme}>
         <input className='search' type='text' name='search' id='search' placeholder='Busca una nota...' />
         <main className='tareas'>
@@ -47,10 +48,9 @@ export default function Application () {
               )}
             </div>
           </article>
-          <NewNote />
+          {selectedTask ? <EditNote /> : <NewNote />}
         </main>
       </div>
-
     </ThemeContext.Provider>
   )
 }

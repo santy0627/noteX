@@ -15,7 +15,7 @@
 }
 
 [theme = 'dark']{
-  --bg-color: black;
+  --bg-color: rgb(17, 17, 17);
   --bg-color-secundary:rgb(32, 32, 32);
   --color-text: white;
 }

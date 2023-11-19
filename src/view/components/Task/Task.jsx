@@ -9,7 +9,7 @@ import CompleteWhite from '../Logos/complete/CompleteWhite'
 
 export default function Task ({ title, description, finishDate, taskId, estado }) {
   const { theme } = useContext(ThemeContext)
-  const { deleteTask, completeTask } = useContext(AppContext)
+  const { deleteTask, completeTask, selectTask } = useContext(AppContext)
 
   const date = new Date(finishDate)
   const dd = date.getDate(date) + 2
@@ -19,7 +19,7 @@ export default function Task ({ title, description, finishDate, taskId, estado }
 
   return (
     <section className={`task ${estado ? 'complete' : 'incomplete'}`}>
-      <div className='task__content'>
+      <div className='task__content' onClick={() => selectTask(taskId)}>
         <h1 className='task__title'>{title}</h1>
         <p className='task__description'>{description}</p>
         <p className='task__date'>La tarea finaliza el: {newDate}</p>
