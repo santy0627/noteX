@@ -6,6 +6,7 @@ import { TrashBlack } from '../Logos/trash/TrashBlack'
 import { AppContext } from '../../context/App/AppContext'
 import CompleteBlack from '../Logos/complete/CompleteBlack'
 import CompleteWhite from '../Logos/complete/CompleteWhite'
+import { Link } from 'react-router-dom'
 
 export default function Task ({ title, description, finishDate, taskId, estado }) {
   const { theme } = useContext(ThemeContext)
@@ -19,11 +20,11 @@ export default function Task ({ title, description, finishDate, taskId, estado }
 
   return (
     <section className={`task ${estado ? 'complete' : 'incomplete'}`}>
-      <div className='task__content' onClick={() => selectTask(taskId)}>
+      <Link to='/app' className='task__content' onClick={() => selectTask(taskId)}>
         <h1 className='task__title'>{title}</h1>
         <p className='task__description'>{description}</p>
         <p className='task__date'>La tarea finaliza el: {newDate}</p>
-      </div>
+      </Link>
       <aside className='task__options'>
         <div className='task__delete' onClick={() => deleteTask(taskId)}>
           {theme === 'dark' ? <TrashWhite width='30px' height='30px' /> : <TrashBlack width='30px' height='30px' />}

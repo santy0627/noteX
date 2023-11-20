@@ -12,7 +12,8 @@
   width: 90%;
   padding: 20px;
   cursor: pointer;
-
+  text-decoration: none;
+  color: var(--color-text);
 }
 
 .task.incomplete{
@@ -69,4 +70,20 @@
 
 .task__complete:hover{
   background-color: var(--green-color);
+}
+
+@media (max-width:770px){ 
+  .task__title{
+    font-size: 20px;
+  }
+
+  .task__description{
+    font-size: 15px;
+  }
+}
+
+@media (max-width:400px) {
+  .task__content{
+    padding: 5px;
+  }
 }

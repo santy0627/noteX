@@ -5,14 +5,19 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  justify-content: space-evenly;
   width: 450px;
   color: var(--color-text);
-  height: 70%;
+  height: 500px;
 }
 
 .add-task__link{
   display: flex;
   align-items: center;
   justify-content: space-between;
+} 
+
+@media (max-width:450px) {
+  .add-task{
+    width: 100%;
+  }
 }

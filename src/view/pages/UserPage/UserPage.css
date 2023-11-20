@@ -6,19 +6,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .user-card{
   background-color: var(--bg-color-secundary);
   width: 800px;
-  height: max-content;
+  height: 100%;
   border-radius: 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 30px;
-  padding: 50px 30px;
+  gap: 0px;
+  padding: 30px;
   flex-direction: column;
+  min-width: 270px;
 }
 
 .user-card__info,
@@ -125,4 +127,34 @@
   background-color: var(--bg-color);
   color: var(--color-text);
   margin-bottom: 20px;
+}
+
+@media (max-width:1030px) {
+  .userPage{
+    flex-direction: column;
+    height: max-content;
+  }
+  .back{
+    position: initial;
+    display: block;
+  }
+}
+
+@media (max-width:800px) {
+  .user-card{
+    width: 100%;
+    border-radius: 30px 30px 0px 0px;
+  }
+}
+
+@media (max-width:550px) {
+  .user-card__info{
+    flex-direction: column;
+  }
+}
+
+@media (max-width:420px) {
+  .user-div{
+    flex-direction: column;
+  }
 }

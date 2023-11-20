@@ -30,7 +30,7 @@ export const AppState = ({ children }) => {
     event.preventDefault()
 
     const date = new Date(event.target.elements.finishDate.value)
-    const dd = date.getDate(date)
+    const dd = date.getDate(date) + 1
     const mm = date.getMonth(date) + 1
     const yyyy = date.getFullYear(date)
     const finishDate = yyyy + '-' + mm + '-' + dd
@@ -125,7 +125,7 @@ export const AppState = ({ children }) => {
     event.preventDefault()
 
     const date = new Date(event.target.elements.finishDate.value)
-    const dd = date.getDate(date)
+    const dd = date.getDate(date) + 1
     const mm = date.getMonth(date) + 1
     const yyyy = date.getFullYear(date)
     const finishDate = yyyy + '-' + mm + '-' + dd

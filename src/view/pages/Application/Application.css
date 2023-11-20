@@ -1,18 +1,20 @@
 .application{
   width: 100%;
-  max-height: calc(100vh - 100px);
+  min-width: 270px;
+  height: calc(100vh - 100px);
   background-color: var(--bg-color);
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  gap: 0px;
+  padding-top: 50px;
 }
 
 .form-search{
   width: 60%;
+  height: max-content;
   display: flex; 
-  margin-top: 30px;
   flex-direction: column;
   gap: 20px;
 }
@@ -57,21 +59,28 @@
 }
 
 .tareas{
-  padding: 30px;
+  padding: 30px 60px 0px 60px;
   padding-bottom: 0px;
-  height: calc(100vh - 100px);
+  height: calc(100vh - 250px);
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: center;
   width: 100%;
 }
 
+.tareas__div{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .pendientes,
 .completadas {
-  height: 700px;
-  width: 38%;
+  height: 600px;
+  width: 100%;
   display: flex;
-  padding: 0px 40px 0px 40px; 
+  padding: 0px 40px 0px 0px; 
   display: flex;
   flex-direction: column;
 }
@@ -79,7 +88,7 @@
 .tareas__status{
   width: 100%;
   height: max-content;
-  font-size: 50px;
+  font-size: 45px;
 }
 
 .tareas__content {
@@ -109,4 +118,93 @@
 .completadas .tareas__status {
   color: var(--green-color);
   border-bottom: 3px solid var(--green-color);
+}
+
+@media (max-width:1630px) {
+  .completadas,
+  .pendientes{
+    height: 500px;
+  }
+}
+
+@media (max-width:1360px) {
+  .form-search{
+    width: 100%;
+    padding-inline: 60px;
+  }
+  .application{
+    gap: 0px;
+  }
+  .application{
+    height: max-content;
+    box-sizing: border-box;
+  }
+  .tareas{
+    flex-direction: column;
+    height: max-content;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .tareas__div{
+    gap: 30px;
+  }
+
+  .completadas,
+  .pendientes{
+    padding: 0px;
+    height: 600px;
+  }
+}
+
+@media (max-width:900px){
+  .search-date__camp{
+    font-size: 18px;
+  }
+  .search-date__camp{
+    font-size: 15px;
+    padding: 8px 8px 8px 12px;
+  }
+
+}
+
+@media (max-width:770px){ 
+
+  .tareas__status{
+    font-size: 30px;
+  }
+
+  .tareas{
+    padding: 30px;
+  }
+}
+
+@media (max-width:730px) {
+  .tareas__div{
+    flex-direction: column;
+  }
+  .pendientes,
+  .completadas{
+    height: 500px;
+  }
+  .pendientes{
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--color-text);
+  }
+}
+
+@media (max-width:500px) {
+  .search-date{
+    flex-direction: column;
+  }
+  .search-date__camp{
+    width: 100%;
+  }
+}
+
+@media (max-width:322px) {
+  .form-search{
+    padding: 10px;
+  }
 }

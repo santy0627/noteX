@@ -58,24 +58,26 @@ export default function Application () {
         </div>
       </form>
       <main className='tareas'>
-        <article className='pendientes'>
-          <h1 className='tareas__status'>Tareas pendientes</h1>
-          <div className='tareas__content'>
-            {incompletedTasks && incompletedTasks.map(todo =>
+        <div className='tareas__div'>
+          <article className='pendientes'>
+            <h1 className='tareas__status'>Tareas pendientes</h1>
+            <div className='tareas__content'>
+              {incompletedTasks && incompletedTasks.map(todo =>
 
-              <Task key={todo._id} title={todo.name} description={todo.description} finishDate={todo.finishDate} taskId={todo._id} estado={todo.isCompleted} />
-            )}
-          </div>
-        </article>
-        <article className='completadas'>
-          <h1 className='tareas__status'>Tareas completadas</h1>
-          <div className='tareas__content'>
-            {completedTasks && completedTasks.map(todo =>
+                <Task key={todo._id} title={todo.name} description={todo.description} finishDate={todo.finishDate} taskId={todo._id} estado={todo.isCompleted} />
+              )}
+            </div>
+          </article>
+          <article className='completadas'>
+            <h1 className='tareas__status'>Tareas completadas</h1>
+            <div className='tareas__content'>
+              {completedTasks && completedTasks.map(todo =>
 
-              <Task key={todo._id} title={todo.name} description={todo.description} finishDate={todo.finishDate} taskId={todo._id} estado={todo.isCompleted} />
-            )}
-          </div>
-        </article>
+                <Task key={todo._id} title={todo.name} description={todo.description} finishDate={todo.finishDate} taskId={todo._id} estado={todo.isCompleted} />
+              )}
+            </div>
+          </article>
+        </div>
         {selectedTask ? <EditNote /> : <NewNote />}
       </main>
     </div>

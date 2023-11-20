@@ -7,7 +7,7 @@
   flex-direction: column;
   width: 450px;
   color: var(--color-text);
-  height: 70%;
+  height: 600px;
 }
 
 .modal__header{
@@ -15,7 +15,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
   border-bottom: 1px solid black;
   padding: 20px;
 }
@@ -34,7 +33,7 @@
   padding: 20px 10px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
   color: var(--color-text);
 }
 
@@ -87,4 +86,10 @@
 .boton.submit.solo,
 .boton.cancel.solo{
   width: 100%;
+}
+
+@media (max-width:450px) {
+  .modal{
+    width: 100%;
+  }
 }
