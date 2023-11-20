@@ -38,6 +38,8 @@ export default function Application () {
         payload: response.todos
       })
       navigate('/app/search')
+    }).catch(error => {
+      window.alert(error)
     })
     event.target.reset()
   }

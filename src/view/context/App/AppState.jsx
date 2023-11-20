@@ -23,6 +23,8 @@ export const AppState = ({ children }) => {
           type: 'GET_TASKS',
           payload: data.todos
         })
+      }).catch(error => {
+        window.alert(error)
       })
   }
 
@@ -58,6 +60,8 @@ export const AppState = ({ children }) => {
         type: 'ADD_TASK',
         payload: response.todo
       })
+    }).catch(error => {
+      window.alert(error)
     })
     event.target.reset()
   }
@@ -76,6 +80,8 @@ export const AppState = ({ children }) => {
         type: 'DELETE_TASK',
         payload: response.todo._id
       })
+    }).catch(error => {
+      window.alert(error)
     })
   }
 
@@ -104,6 +110,8 @@ export const AppState = ({ children }) => {
         type: 'COMPLETE_TASK',
         payload: response.todo
       })
+    }).catch(error => {
+      window.alert(error)
     })
   }
 
@@ -155,6 +163,8 @@ export const AppState = ({ children }) => {
         type: 'UPDATE_TASK',
         payload: response.todo
       })
+    }).catch(error => {
+      window.alert(error)
     })
     event.target.reset()
   }
@@ -175,6 +185,8 @@ export const AppState = ({ children }) => {
           type: 'GET_USER',
           payload: response.user
         })
+      }).catch(error => {
+        window.alert(error)
       })
   }
 

@@ -32,7 +32,7 @@ export default function Login () {
       })
       navigate('/app')
     }).catch(error => {
-      console.log('Error en la navegación' + error)
+      window.alert(error)
     })
   }
 
