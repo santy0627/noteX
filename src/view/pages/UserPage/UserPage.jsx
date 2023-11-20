@@ -40,7 +40,7 @@ export default function UserPage () {
         type: 'UPDATE_TASK',
         payload: response.user
       })
-      navigate('/ingreso')
+      navigate('/app')
     })
     event.target.reset()
   }

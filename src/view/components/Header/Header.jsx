@@ -14,7 +14,6 @@ export default function Header () {
 
   useEffect(() => {
     getUserLogged()
-    getUserLogged()
   }, [])
 
   const [theme, setTheme] = useState('dark')

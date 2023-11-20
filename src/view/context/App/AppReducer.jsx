@@ -51,7 +51,8 @@ export default (state, action) => {
     case LOGOUT:
       return {
         ...state,
-        user: null
+        user: null,
+        userLogged: null
       }
     case UPDATE_USER:
       return {

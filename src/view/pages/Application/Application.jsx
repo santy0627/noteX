@@ -8,10 +8,11 @@ import { ThemeContext } from '../../components/Header/Header'
 import { useNavigate } from 'react-router-dom'
 
 export default function Application () {
-  const { getTasks, tasks, selectedTask, user, dispatch } = useContext(AppContext)
+  const { getTasks, tasks, selectedTask, user, dispatch, getUserLogged } = useContext(AppContext)
 
   useEffect(() => {
     getTasks()
+    getUserLogged()
   }, [])
 
   const incompletedTasks = tasks.filter(task => task.isCompleted === false)

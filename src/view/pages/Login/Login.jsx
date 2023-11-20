@@ -4,9 +4,12 @@ import { useContext } from 'react'
 import { AppContext } from '../../context/App/AppContext'
 
 export default function Login () {
-  const { dispatch } = useContext(AppContext)
+  const { dispatch, userLogged, user } = useContext(AppContext)
 
   const navigate = useNavigate()
+
+  console.log(user)
+  console.log(userLogged)
 
   const getUser = (event) => {
     event.preventDefault()
