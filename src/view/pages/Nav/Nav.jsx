@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, Outlet } from 'react-router-dom'
 import './Nav.css'
 import { Github } from '../../components/Logos/Github'
-import { Email } from '../../components/Logos/Email'
 import { Menu } from '../../components/Logos/Menu'
 
 export default function Nav () {
@@ -61,14 +60,6 @@ export default function Nav () {
                   target='_blank'
                 >
                   <Github width={40} />
-                </a>
-                <a
-                  className='logo'
-                  href='https://gmail.com'
-                  rel='noopener noreferrer'
-                  target='_blank'
-                >
-                  <Email width={40} />
                 </a>
               </div>
             </ul>
