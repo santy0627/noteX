@@ -1,15 +1,28 @@
 .error{
-  width: 30%;
-  height: 40%;
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+  height: max-content;
+  display: flex;  
   justify-content: center;
   align-items: center;
   gap: 20px;
-  position: absolute;
   left: 10vw;
+  position: relative;
+  left: 10px;
+  min-width: 240px;
+}
+.error__div{
+  display: flex;
+  flex-direction: column;
+  width: 450px;
+  align-items: center;
 }
 
+.error__image{
+  width: max-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .error__title{
   font-size: 9rem;
 }
@@ -21,4 +34,31 @@
 .error__description{
   font-size: 1.4rem;
   font-weight: 700;
+}
+
+@media (max-width:1400px) {
+  .error{
+    flex-direction: column;
+  }
+}
+
+@media (max-width:900px) {
+  .error__image{
+    display: none;
+  }
+}
+
+@media (max-width:450px) {
+  .error__div{
+    width: max-content;
+    min-width: 240px;
+  }
+  .error__title{
+    font-size: 5rem;
+  }
+
+  .error__text,
+  .error__description{
+    font-size: 1.2rem;
+  }
 }

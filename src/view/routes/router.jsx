@@ -46,6 +46,7 @@ export const router = createHashRouter([
         path: 'search',
         Component: SearchPage
       }
-    ]
+    ],
+    ErrorBoundary: ErrorPage
   }
 ])
